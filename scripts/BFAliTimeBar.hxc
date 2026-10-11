@@ -1,0 +1,218 @@
+import flixel.FlxG;
+import flixel.FlxSprite;
+import flixel.math.FlxRect;
+import flixel.text.FlxText;
+import flixel.text.FlxTextBorderStyle;
+import funkin.Paths;
+import funkin.modding.module.Module;
+import funkin.modding.events.ScriptEvent.UpdateScriptEvent;
+import funkin.play.PlayState;
+
+class BFAliTimeBar extends Module {
+	var game:PlayState;
+	var shadow:FlxSprite;
+	var plate:FlxSprite;
+	var topRed:FlxSprite;
+	var topBlue:FlxSprite;
+	var track:FlxSprite;
+	var progressBands:Array<FlxSprite> = [];
+	var tickMarks:Array<FlxSprite> = [];
+	var playheadGlow:FlxSprite;
+	var playhead:FlxSprite;
+	var elapsedLabel:FlxText;
+	var titleLabel:FlxText;
+	var remainingLabel:FlxText;
+	var barWidth:Int = 300;
+	var barHeight:Int = 40;
+
+	public function new() {
+		super("BFAliTimeBar", 0);
+	}
+
+	override function onUpdate(event:UpdateScriptEvent):Void {
+		super.onUpdate(event);
+
+		if (!Std.isOfType(FlxG.state, PlayState)) {
+			game = null;
+			shadow = null;
+			plate = null;
+			track = null;
+			progressBands = [];
+			tickMarks = [];
+			playheadGlow = null;
+			playhead = null;
+			elapsedLabel = null;
+			titleLabel = null;
+			remainingLabel = null;
+			return;
+		}
+
+		var currentGame:PlayState = PlayState.instance;
+		if (currentGame == null) return;
+
+		if (game != currentGame || plate == null) {
+			game = currentGame;
+			createTimeBar();
+		}
+
+		updateLayout();
+		updateProgress();
+	}
+
+	function createTimeBar():Void {
+		var hpBar = game.healthBarBG != null ? game.healthBarBG : game.healthBar;
+		if (hpBar != null) {
+			barWidth = Std.int(Math.min(300, hpBar.width * 0.68));
+		} else {
+			barWidth = Std.int(Math.min(300, FlxG.width - 32));
+		}
+		if (barWidth < 180) barWidth = Std.int(Math.max(1, FlxG.width - 32));
+
+		shadow = new FlxSprite().makeGraphic(barWidth + 20, barHeight + 10, 0x99000000);
+		plate = new FlxSprite().makeGraphic(barWidth + 12, barHeight, 0xFF100D18);
+		topRed = new FlxSprite().makeGraphic(Std.int((barWidth + 12) / 2), 3, 0xFFE33B50);
+		topBlue = new FlxSprite().makeGraphic(barWidth + 12 - Std.int((barWidth + 12) / 2), 3, 0xFF428DFF);
+		track = new FlxSprite().makeGraphic(barWidth - 24, 8, 0xFF080C18);
+		roundCorners(shadow, 14);
+		roundCorners(plate, 11);
+		roundCorners(track, 4);
+
+		var bandColors:Array<Int> = [0xFF5A1424, 0xFFE33B50, 0xFF142B55, 0xFF428DFF];
+		for (color in bandColors) {
+			progressBands.push(new FlxSprite().makeGraphic(barWidth - 24, 2, color));
+		}
+
+		for (index in 1...10) {
+			tickMarks.push(new FlxSprite().makeGraphic(1, 10, 0xFF65718A));
+		}
+
+		playheadGlow = new FlxSprite().makeGraphic(8, 14, 0x665BA6FF);
+		playhead = new FlxSprite().makeGraphic(3, 12, 0xFFFFFFFF);
+
+		elapsedLabel = createLabel(76, 0xFFFF7182, "left", 12);
+		titleLabel = createLabel(190, 0xFFD6D9E4, "center", 9);
+		remainingLabel = createLabel(76, 0xFF79B1FF, "right", 12);
+
+		addHudSprite(shadow, 900);
+		addHudSprite(plate, 901);
+		addHudSprite(topRed, 902);
+		addHudSprite(topBlue, 902);
+		addHudSprite(track, 903);
+		for (band in progressBands) addHudSprite(band, 904);
+		for (tick in tickMarks) addHudSprite(tick, 905);
+		addHudSprite(playheadGlow, 906);
+		addHudSprite(playhead, 907);
+		addHudSprite(elapsedLabel, 908);
+		addHudSprite(titleLabel, 908);
+		addHudSprite(remainingLabel, 908);
+
+		if (game.timeBar != null) {
+			game.timeBar.visible = false;
+			game.timeBar.active = false;
+		}
+		if (game.timeBarBG != null) game.timeBarBG.visible = false;
+		if (game.timeTxt != null) game.timeTxt.visible = false;
+		game.refresh();
+	}
+
+	function createLabel(width:Int, color:Int, alignment:String, size:Int):FlxText {
+		var label = new FlxText(0, 0, width, "", size);
+		label.setFormat(Paths.font("vcr.ttf"), size, color, alignment, FlxTextBorderStyle.OUTLINE, 0xFF08070D);
+		label.borderSize = 1;
+		label.scrollFactor.set(0, 0);
+		label.cameras = [game.camHUD];
+		return label;
+	}
+
+	function addHudSprite(sprite:FlxSprite, order:Int):Void {
+		sprite.cameras = [game.camHUD];
+		sprite.scrollFactor.set(0, 0);
+		sprite.zIndex = order;
+		game.add(sprite);
+	}
+
+	function roundCorners(sprite:FlxSprite, radius:Int):Void {
+		var bitmap = sprite.graphic.bitmap;
+		var width = Std.int(sprite.width);
+		var height = Std.int(sprite.height);
+		var cornerRadius = Std.int(Math.min(radius, Math.min(width, height) / 2));
+
+		for (y in 0...cornerRadius) {
+			for (x in 0...cornerRadius) {
+				var dx = cornerRadius - x - 0.5;
+				var dy = cornerRadius - y - 0.5;
+				if (dx * dx + dy * dy > cornerRadius * cornerRadius) {
+					bitmap.setPixel32(x, y, 0x00000000);
+					bitmap.setPixel32(width - x - 1, y, 0x00000000);
+					bitmap.setPixel32(x, height - y - 1, 0x00000000);
+					bitmap.setPixel32(width - x - 1, height - y - 1, 0x00000000);
+				}
+			}
+		}
+		sprite.graphic.bitmap = bitmap;
+	}
+
+	function updateLayout():Void {
+		var x = (FlxG.width - barWidth) / 2;
+		var y = 86.0;
+		var hpBar = game.healthBarBG != null ? game.healthBarBG : game.healthBar;
+
+		if (hpBar != null) {
+			x = hpBar.x + (hpBar.width - barWidth) / 2;
+			y = hpBar.y + hpBar.height + 34;
+		} else if (game.timeBar != null) {
+			y = game.timeBar.y + game.timeBar.height + 34;
+		}
+
+		if (x < 8) x = 8;
+		if (x + barWidth + 12 > FlxG.width - 8) x = FlxG.width - barWidth - 20;
+
+		shadow.setPosition(x - 10, y - 5);
+		plate.setPosition(x - 6, y);
+		topRed.setPosition(x - 6, y);
+		topBlue.setPosition(x - 6 + topRed.width, y);
+		track.setPosition(x + 6, y + 27);
+
+		for (index in 0...progressBands.length) {
+			progressBands[index].setPosition(track.x, track.y + index * 2);
+		}
+		for (index in 0...tickMarks.length) {
+			tickMarks[index].setPosition(track.x + track.width * (index + 1) / 10, track.y);
+		}
+
+		playheadGlow.setPosition(track.x - playheadGlow.width / 2, track.y - 3);
+		playhead.setPosition(track.x - playhead.width / 2, track.y - 2);
+		elapsedLabel.setPosition(x + 8, y + 7);
+		titleLabel.setPosition(x + (barWidth - titleLabel.width) / 2, y + 8);
+		remainingLabel.setPosition(x + barWidth - remainingLabel.width - 8, y + 7);
+	}
+
+	function updateProgress():Void {
+		var music = FlxG.sound.music;
+		var songLength = music == null ? 0.0 : music.length;
+		var songTime = music == null ? 0.0 : music.time;
+		var progress = songLength > 0 ? songTime / songLength : 0.0;
+
+		if (progress < 0) progress = 0;
+		if (progress > 1) progress = 1;
+
+		var fillWidth = progress * track.width;
+		for (band in progressBands) {
+			band.clipRect = new FlxRect(0, 0, fillWidth, band.height);
+		}
+
+		var markerX = track.x + fillWidth;
+		playheadGlow.x = markerX - playheadGlow.width / 2;
+		playhead.x = markerX - playhead.width / 2;
+		elapsedLabel.text = formatTime(songTime);
+		titleLabel.text = "BFA  /  KALAN";
+		remainingLabel.text = "-" + formatTime(Math.max(0, songLength - songTime));
+	}
+
+	function formatTime(milliseconds:Float):String {
+		var totalSeconds = Std.int(Math.floor(Math.max(0, milliseconds) / 1000));
+		var minutes = Std.int(totalSeconds / 60);
+		var seconds = totalSeconds % 60;
+		return (minutes < 10 ? "0" : "") + minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
+	}
+}
