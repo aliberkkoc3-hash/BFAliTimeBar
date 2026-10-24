@@ -1,114 +1,43 @@
-# BFAliTimeBar Güvenlik Politikası
+# Prism Crew Studio — Security Policy
 
-## 1. Kapsam
+**Version:** 1.0  
+**Effective Date:** October 24, 2026  
+**Copyright:** © 2026 Prism Crew Studio. All rights reserved.
 
-Bu güvenlik politikası yalnızca **BFAliTimeBar** projesi kapsamında bu depoda veya dağıtım paketlerinde bulunan dosyalar için geçerlidir.
+### 1. Our Objective
 
-Friday Night Funkin', V-Slice, başka modlar, üçüncü taraf yazılımlar, oyun motorları, sunucular, web siteleri, hesaplar ve harici hizmetler bu projenin güvenlik kapsamına dahil değildir.
+At Prism Crew Studio, we prioritize the security of our projects, source code, and users. This policy outlines how security vulnerabilities discovered in our projects should be reported and addressed.
 
-Bu politika, üçüncü taraf sistemlerini test etmek veya bunlara erişmek için herhangi bir izin vermez.
+### 2. Supported Versions
 
----
+Security updates are provided for project versions that we actively maintain and explicitly support. The support status for each project is specified within its respective repository.
 
-## 2. Güvenlik Açığı Bildirimi
+### 3. Reporting Vulnerabilities
 
-BFAliTimeBar içerisinde gerçek ve yeniden üretilebilir bir güvenlik açığı tespit ettiğini düşünüyorsan, açığı herkese açık şekilde yayımlamadan önce mümkünse proje geliştiricisine özel olarak bildir.
+If you discover a security vulnerability, please:
 
-Bildirim mümkün olduğunca şu bilgileri içermelidir:
+- Report it privately to Prism Crew Studio before disclosing it publicly.
+- Identify the affected project and version.
+- Describe the impact of the vulnerability and, if possible, provide steps to reproduce it.
+- Do not include passwords, access keys, or other personal/sensitive information in your report.
 
-* Etkilenen dosya veya bileşen
-* Açığın nasıl ortaya çıktığı
-* Yeniden üretme adımları
-* Etkilenen sürüm
-* Olası güvenlik etkisi
-* Sorunu doğrulamak için gerekli minimum bilgi
+For reporting, please use the *Private vulnerability reporting* feature found under the **Security** tab of the relevant GitHub repository. If this feature is unavailable, please use the private communication channel specified by the repository maintainer.
 
-**Ancak bildirim göndermek için sahte iletişim adresleri veya geliştiriciye ait olmayan hesaplar kullanma.**
+### 4. Responsible Disclosure
 
-Bu projede doğrulanmış bir güvenlik e-posta adresi veya özel güvenlik bildirim sistemi bulunmuyorsa, geliştirici adına iletişim kanalı uydurma.
+We request that you allow a reasonable amount of time for us to investigate, verify, and remediate any reported vulnerabilities. Vulnerabilities should not be disclosed publicly without prior coordination with Prism Crew Studio.
 
----
+We do not guarantee that every report will be accepted, resolved within a specific timeframe, or eligible for a reward.
 
-## 3. Kesinlikle Yapılmaması Gerekenler
+### 5. Scope and Limitations
 
-BFAliTimeBar ile ilgili bir güvenlik araştırması yaptığını iddia etmen, aşağıdaki davranışları meşru hâle getirmez.
+Security research must be conducted only on systems for which you have authorization and in compliance with all applicable laws. Do not access user data, disrupt services, or put others' systems at risk by testing for vulnerabilities.
 
-**Kesinlikle:**
+### 6. Communication
 
-* Başkasının cihazına, hesabına, dosyasına, ağına veya hizmetine izinsiz erişme.
-* Yetkisiz sistemlerde güvenlik testi gerçekleştirme.
-* Açığı kullanarak veri okuma, değiştirme, silme veya dışarı aktarma.
-* Hesaplara veya sistemlere yetkisiz erişim elde etmeye çalışma.
-* Parola, erişim belirteci veya oturum bilgisi toplamaya çalışma.
-* Kalıcılık sağlamaya veya güvenlik mekanizmalarını aşmaya çalışma.
-* Zararlı yazılım yerleştirme veya çalıştırma.
-* Hizmetleri kullanılmaz hâle getirme ya da performanslarını kasıtlı olarak bozma.
-* Gerçek kişilere ait özel veya hassas bilgileri toplama, saklama veya yayımlama.
-* Bir güvenlik açığını kanıtlamak amacıyla gereğinden fazla veri elde etme.
-* Açığı kullanarak başka kişileri, sistemleri veya hizmetleri etkileme.
-
-**Yetkisiz erişim yetkisizdir. “Araştırma”, “test”, “eğitim” veya “güvenlik araştırması” olarak adlandırılması bunu değiştirmez.**
+For security-related notifications, use the security contact method specified in the GitHub repository for the relevant project. Do not assume or guess a contact address that has not been explicitly provided.
 
 ---
 
-## 4. Güvenli Araştırma Sınırı
-
-Güvenlik araştırması yalnızca kendi cihazların, kendi hesapların veya açıkça test izni verilen ortamlarla sınırlı tutulmalıdır.
-
-Bir güvenlik açığını doğrulamak için gerekli olan **en küçük ve en az zarar verici yöntem** kullanılmalıdır.
-
-Bir açığın varlığını göstermek için gerçek kullanıcı verilerine, üçüncü taraf sistemlerine veya başkalarının hesaplarına erişmek gerekli değildir.
-
----
-
-## 5. Açığın Kamuya Açıklanması
-
-Güvenlik açığının ayrıntılarını herkese açık şekilde paylaşırken:
-
-* kişisel verileri,
-* parolaları,
-* erişim belirteçlerini,
-* özel dosyaları,
-* gerçek kullanıcı bilgilerini,
-* gereksiz saldırı ayrıntılarını
-
-yayımlama.
-
-Bir açığın kamuya açıklanması, başka kişilerin bu açığı kötüye kullanmasına doğrudan yardımcı olacak gereksiz bilgiler içermemelidir.
-
----
-
-## 6. Yanıt ve Düzeltme
-
-Güvenlik bildirimi gönderilmesi;
-
-* yanıt verileceği,
-* açığın kabul edileceği,
-* belirli bir sürede düzeltileceği,
-* güvenlik güncellemesi yayımlanacağı
-
-anlamına gelmez.
-
-BFAliTimeBar gönüllü olarak geliştirilen bir proje olabilir ve güvenlik bildirimlerine ilişkin belirli bir müdahale veya düzeltme süresi garanti edilmez.
-
----
-
-## 7. Garanti ve Sorumluluk
-
-BFAliTimeBar'ın güvenlik denetiminden geçtiği, güvenlik açığı içermediği veya her türlü saldırıya karşı korunduğu garanti edilmez.
-
-Yazılım **"olduğu gibi"** sunulmaktadır.
-
-BFAliTimeBar'ın kullanılması, değiştirilmesi veya dağıtılmasından kaynaklanan güvenlik sorunları ve zararlar konusunda, yürürlükteki hukukun izin verdiği ölçüde proje geliştiricisi sorumlu tutulamaz.
-
-Lisans koşulları için **[LICENSE.md](./LICENSE.md)** dosyasına bakınız.
-
----
-
-## 8. Son Hüküm
-
-**BFAliTimeBar üzerinde güvenlik araştırması yapabilirsin; ancak bu sana başkalarının sistemlerine saldırma, erişim sağlama veya veri toplama hakkı vermez.**
-
-**Yetkisiz erişim, veri hırsızlığı, zarar verme ve kötüye kullanım kabul edilmez.**
-
-**Telif Hakkı © 2026 Ali Berk**
+**Prism Crew Studio**  
+*Beyond the Spectrum*
