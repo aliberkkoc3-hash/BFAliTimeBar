@@ -1,14 +1,56 @@
-MIT Lisansı
+# Prism Crew Studio License (PCSL) v1.0
 
-Telif Hakkı (c) 2026 Prism Crew
+Copyright (c) 2026 Prism Crew Studio. All rights reserved.
 
-Bu yazılımın ve ilgili dokümantasyon dosyalarının ("Yazılım") bir kopyasını edinen herhangi bir kişiye,
-Yazılımı kısıtlama olmaksızın kullanma, kopyalama, değiştirme, birleştirme, yayınlama, dağıtma, alt lisanslama ve/veya satma hakları da dahil olmak üzere,
-Yazılımı kullanma izni ücretsiz olarak verilmektedir.
-Yazılımın kopyalarını kullanma, kopyalama, değiştirme, birleştirme, yayınlama, dağıtma, alt lisanslama ve/veya satma hakları da dahil olmak üzere,
-Yazılımın kendisine sağlandığı kişilere, aşağıdaki koşullara tabi olarak, bunu yapmalarına izin verilir:
+## 1. Ownership
 
-Yukarıdaki telif hakkı bildirimi ve bu izin bildirimi, Yazılımın tüm kopyalarına veya önemli bölümlerine dahil edilecektir.
+All source code, software, libraries, tools, assets, designs, documentation, and other materials distributed under this license are the intellectual property of Prism Crew Studio or their respective credited owners, unless explicitly stated otherwise.
 
-YAZILIM, HERHANGİ BİR GARANTİ OLMADAN, AÇIK VEYA ZIMNİ OLARAK, SATILABİLİRLİK, BELİRLİ BİR AMACA UYGUNLUK VE İHLAL ETMEME GARANTİLERİ DAHİL ANCAK BUNLARLA SINIRLI OLMAMAK ÜZERE, "OLDUĞU GİBİ" SAĞLANMAKTADIR. HİÇBİR DURUMDA YAZARLAR VEYA TELİF HAKKI SAHİPLERİ, SÖZLEŞME, HAKSIZ FİİL VEYA BAŞKA BİR NEDENLE ORTAYA ÇIKAN HERHANGİ BİR TALEP, ZARAR VEYA DİĞER YÜKÜMLÜLÜKLERDEN SORUMLU TUTULAMAZLAR.
-YAZILIMIN KULLANIMI VEYA YAZILIMLA İLGİLİ DİĞER İŞLEMLERDEN KAYNAKLANAN HERHANGİ BİR DURUMDA DA SORUMLU TUTULAMAZLAR.
+## 2. Permission
+
+Permission is granted to view and study the source code for educational, research, and personal learning purposes.
+
+Such permission does not grant the right to redistribute, republish, sell, sublicense, or commercially exploit the licensed materials.
+
+## 3. Restrictions
+
+Without prior written permission from Prism Crew Studio, you may not:
+
+- Copy, redistribute, or republish the licensed materials or substantial portions thereof.
+- Sell, sublicense, or commercially exploit the licensed materials.
+- Publish modified or derivative versions of the licensed materials.
+- Claim authorship or ownership of the original work.
+- Remove copyright notices, license notices, or author credits.
+- Use the licensed materials in another project in a way that violates this license.
+
+## 4. Attribution
+
+Any use expressly authorized by Prism Crew Studio must retain all applicable copyright notices, author credits, and attribution requirements.
+
+Attribution alone does not constitute permission to use, modify, or redistribute the licensed materials.
+
+## 5. Third-Party Materials
+
+Third-party libraries, assets, and components remain subject to their own respective licenses. This license does not override or replace those licenses.
+
+## 6. No Warranty
+
+The licensed materials are provided "AS IS", without warranties of any kind, express or implied, to the maximum extent permitted by applicable law.
+
+Prism Crew Studio shall not be liable for claims or damages arising from the use of the licensed materials, to the maximum extent permitted by applicable law.
+
+## 7. Termination
+
+Any rights granted under this license terminate automatically if you materially violate its terms, subject to applicable law.
+
+## 8. Requests for Permission
+
+For permissions not explicitly granted by this license, contact Prism Crew Studio through its official communication channels.
+
+## 9. Copyright Notice
+
+Unless otherwise specified:
+
+Copyright (c) 2026 Prism Crew Studio. All rights reserved.
+
+Unauthorized copying, redistribution, or commercial use is prohibited.
